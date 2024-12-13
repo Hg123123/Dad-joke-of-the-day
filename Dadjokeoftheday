@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Joke Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dad Joke of the Day</h1>
+    <form id="jokeForm">
+        <label for="joke">Enter your Dad Joke:</label><br>
+        <input type="text" id="joke" name="joke" placeholder="Why did the chicken..." required><br><br>
+        <label for="answer">Enter the Punchline:</label><br>
+        <input type="text" id="answer" name="answer" placeholder="To get to the other side!" required><br><br>
+        <button type="submit">Generate Joke Image</button>
+    </form>
+
+    <canvas id="jokeCanvas" width="800" height="400"></canvas>
+
+    <script>
+        const form = document.getElementById('jokeForm');
+        const canvas = document.getElementById('jokeCanvas');
+        const ctx = canvas.getContext('2d');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get joke and answer
+            const joke = document.getElementById('joke').value;
+            const answer = document.getElementById('answer').value;
+
+            // Draw on canvas
+            ctx.fillStyle = '#ADD8E6'; // Light blue background
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#000'; // Black text
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+
+            // Title
+            ctx.fillText('Dad Joke of the Day', canvas.width / 2, 50);
+
+            // Joke
+            ctx.fillText(joke, canvas.width / 2, 150);
+
+            // Answer
+            ctx.fillText(`Answer: ${answer}`, canvas.width / 2, 250);
+        });
+    </script>
+</body>
+</html>
